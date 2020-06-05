@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SalesWebMvc.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace SalesWebMvc.Services
 {
@@ -15,9 +16,14 @@ namespace SalesWebMvc.Services
             _context = context;
         }
 
-        public List<Department> FindAlll()
+        public async Task<List<Department>> FindAllAsync()
         {
-            return _context.Department.OrderBy(x => x.Name).ToList();
+            return await _context.Department.OrderBy(x => x.Name).ToListAsync();
+        }
+
+        internal object FindAlll()
+        {
+            throw new NotImplementedException();
         }
     }
 }
